@@ -6,21 +6,21 @@ The app targets high school students from anywhere who are looking for a easy an
 
 Completed Use Cases:
 
-Sign-in User
-Sign up Account
-Search for Students
-Search for Universities
-View Detailed Posting (of a student/university)
-Apply for Admission (which may necessitate special, additional info from students depending on the target universities)
-Upload Materials (including image(s) and video(s)) 
-Schedule Appointment (with Email confirmation)
-Request for More Information (from a student/university)
-Highlight (Special Showcase) University 
-Compare Postings (of students/universities)
-Show Similar Mixtapes (via YouTube Web services (see ISUYouTubeWS)) 
-Show Map of Posting (via Web services (e.g., Google Maps))
-Mark universities for showcase <== Admin only
-Unsubscribe from Mailing (student/university)
-Update Posting (student/university)
-Report xxx (e.g., most viewed Postings, most request-for-info on a Posting, etc.)
+Sign-in User, 
+Sign up Account, 
+Search for Students, 
+Search for Universities, 
+View Detailed Posting (of a student/university), 
+Apply for Admission (which may necessitate special, additional info from students depending on the target universities), 
+Upload Materials (including image(s) and video(s)),  
+Schedule Appointment (with Email confirmation), 
+Request for More Information (from a student/university), 
+Highlight (Special Showcase) University,  
+Compare Postings (of students/universities), 
+Show Similar Mixtapes (via YouTube Web services (see ISUYouTubeWS)),  
+Show Map of Posting (via Web services (e.g., Google Maps)), 
+Mark universities for showcase <== Admin only, 
+Unsubscribe from Mailing (student/university), 
+Update Posting (student/university), 
+Report xxx (e.g., most viewed Postings, most request-for-info on a Posting, etc.), 
 Retrieve lost password
