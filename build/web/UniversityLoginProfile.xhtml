@@ -1,0 +1,56 @@
+<!DOCTYPE HTML PUBLIC "-//W3C//DTD HTML 4.01 Transitional//EN" "http://www.w3.org/TR/html4/loose.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:f="http://java.sun.com/jsf/core"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+
+
+    <h:head>
+        <f:facet name="first">
+            <meta content='text/html; charset=UTF-8' http-equiv="Content-Type"/>
+            <title>University Profile</title>
+        </f:facet>
+        <script src="http://maps.google.com/maps/api/js?sensor=false" 
+        type="text/javascript"></script>
+    </h:head>
+
+    <h:body>
+        <ui:composition template="templates/universityCommon.xhtml">
+            <ui:define name="content-right">
+                <center><h2>University Profile</h2></center>
+                <h:form>
+                    <div style="float: right">      
+                        <p:graphicImage id="image1" alt="uploaded" value="#{loginController.university.fileToShow}" width="300px" height="300px">
+                        </p:graphicImage>
+                    </div>
+                    <div style="float: left">
+                        <table>
+                            <tr><td>
+                            <h:outputText value="Name of the University: " />
+                        </td><td>
+                    <h:outputText value="#{loginController.university.name}" />&nbsp;
+
+                    </td></tr><br/>
+                    <tr><td>Contact Information:</td><td></td></tr>
+                    <tr><td>Address:</td><td><h:outputText value="#{loginController.university.streetAddress}"/>, <h:outputText value="#{loginController.university.city}"/>
+                    , <h:outputText value="#{loginController.university.state}"/>&nbsp;<h:outputText value="#{loginController.university.zipCode}"/>
+                    &nbsp;<h:outputText value="#{loginController.university.country}"/></td></tr>
+                    <tr><td>Phone Number:</td><td><h:outputText value="#{loginController.university.phoneNumber}"/></td></tr>
+                    <tr><td>Email:</td><td><h:outputText value="#{loginController.university.email}"/></td></tr>
+                    <tr><td>Minimum Required Scores:</td><td></td></tr>
+                    <tr><td>GPA:</td><td><h:outputText value="#{loginController.university.minimumRequiredGPA}"/></td></tr>
+                    <tr><td>SAT:</td><td><h:outputText value="#{loginController.university.minimumRequiredSATScore}"/></td></tr>
+                    <tr><td>ACT:</td><td><h:outputText value="#{loginController.university.minimumRequiredACTScore}"/></td></tr>
+                    <tr><td>PSAT:</td><td><h:outputText value="#{loginController.university.minimumRequiredPSATScore}"/></td></tr>
+                    <tr><td>TOEFL:</td><td><h:outputText value="#{loginController.university.minimumRequiredTOEFLScore}"/></td></tr>
+                    <tr><td>Offered Majors:</td><td><h:outputText value="#{loginController.university.convertOfferedMajorsToString()}"/></td></tr>
+                    <tr><td>More About University:</td><td><h:outputText value="#{loginController.university.aboutUniversity}"/></td></tr>
+                </table>
+            </div>
+        </h:form>
+    </ui:define>
+</ui:composition>
+</h:body>
+</html>
+

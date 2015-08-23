@@ -1,0 +1,131 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Student SignUp</title>
+        <h:outputStylesheet name="./css/cssLayout_1.css"/>
+    </h:head>
+    <h:body>
+
+        <ui:composition template="templates/SignUp.xhtml">
+            <ui:define name="content-right">
+                <center>    <h3>   <p:outputLabel value="Student SignUp" style="color: black"/></h3> </center>
+                <h:form enctype = "multipart/form-data">
+                    <div style="float:left; width:50%;">
+                        <table>
+                            <tr><td><h3>Login Information</h3></td><td></td></tr>
+                            <tr><td>User ID:</td><td><p:inputText id="userID" onblur="validateEmail()" value="#{studentProfileController.theModel.email}">
+                                        <!--                                    <f:validator validatorId="userIdValidator" />-->
+                                        <!--                                    <h:message id ="useridvalidate" for="userID" style="color:red" />-->
+                                    </p:inputText></td></tr>
+                            <tr><td>First name:</td><td><p:inputText id="fname" required="true" value="#{studentProfileController.theModel.firstName}">
+                                        <f:validateLength minimum="2" maximum="25" />
+                                    </p:inputText></td></tr>
+                            <tr><td>Last name:</td><td><p:inputText id="lname" required="true" value="#{studentProfileController.theModel.lastName}">
+                                        <f:validateLength minimum="2" maximum="25" />
+                                    </p:inputText></td></tr>
+                            <tr><td>Password:</td><td><p:password redisplay="false" required="true" id="passwd" value="#{studentProfileController.theModel.password}">
+                                        <!--                                    <f:validator validatorId="passwordValidator" />-->
+                                        <f:attribute name="confirm" value="#{confirm}" />
+                                    </p:password>
+                                    <!--                                <h:message for="passwd" style="color: red;" />-->
+                                </td></tr>
+                            <tr><td>Confirm Password:</td><td><p:password id="confirm" binding="#{confirm}" required="true" />
+                                    <!--                                <h:message for="confirm" style="color: red;" />-->
+                                </td></tr>
+                            <tr><td>Security Question:</td><td><p:selectOneMenu id="questionID" value="#{studentProfileController.theModel.securityQuestion}" required="true">
+                                        <f:selectItem id="Def" itemLabel="Please select a security question" itemValue="" />
+                                        <f:selectItem id="secQ1" itemLabel="What is the name of the city where you were born?" itemValue="What is the name of the city where you were born?" />
+                                        <f:selectItem id="secQ2" itemLabel="What is your first pet name?" itemValue="What is the name of the city where you were born?" />
+                                        <f:selectItem id="SecQ3" itemLabel="What is your best friends first name?" itemValue="What is the name of the city where you were born?" />
+                                    </p:selectOneMenu></td></tr>
+                            <tr><td>Security Answer:</td><td><p:inputText id="secAns" required="true" value="#{studentProfileController.theModel.securityAnswer}" >
+                                    </p:inputText></td></tr>
+                            <tr><td><h3>Personal Information</h3></td><td></td></tr>
+                            <tr><td>Date of Birth(YYYY-MM-DD):</td><td><p:inputText id="DOB"  value="#{studentProfileController.theModel.dateOfBirth}"><!--required="true -->                     
+                                    </p:inputText></td></tr>
+                            <tr><td>Gender:</td><td><p:selectOneMenu id="GenderId" value="#{studentProfileController.theModel.gender}" required="true">
+                                        <f:selectItem id="Default" itemLabel="" itemValue="" />
+                                        <f:selectItem id="male" itemLabel="Male" itemValue="M" />
+                                        <f:selectItem id="female" itemLabel="Female" itemValue="F" />
+                                    </p:selectOneMenu></td></tr>
+                            <tr><td>Provider:</td><td><p:selectOneMenu id="providerID" value="#{studentProfileController.theModel.provider}" required="true">
+                                        <f:selectItem id="provID" itemLabel="Please select a provider" itemValue="" />
+                                        <f:selectItem id="proQ1" itemLabel="boost mobile" itemValue="boost mobile" />
+                                        <f:selectItem id="proQ2" itemLabel="t-mobile" itemValue="t-mobile" />
+                                        <f:selectItem id="proQ3" itemLabel="cingular" itemValue="cingular" />
+                                        <f:selectItem id="proQ4" itemLabel="sprint nextel" itemValue="sprint nextel" />
+                                        <f:selectItem id="proQ5" itemLabel="verizon" itemValue="verizon" />
+                                        <f:selectItem id="proQ6" itemLabel="nextel" itemValue="nextel" />
+                                        <f:selectItem id="proQ7" itemLabel="us cellular" itemValue="us cellular" />
+                                        <f:selectItem id="proQ8" itemLabel="suncom" itemValue="suncom" />
+                                        <f:selectItem id="proQ9" itemLabel="powertel" itemValue="powertel" />
+                                        <f:selectItem id="proQ10" itemLabel="att cingular" itemValue="att cingular" />
+                                        <f:selectItem id="proQ11" itemLabel="alltel" itemValue="alltel" />
+                                        <f:selectItem id="proQ12" itemLabel="metro pcs" itemValue="metro pcs" />
+                                    </p:selectOneMenu></td></tr>
+                            <tr><td>Phone Number:</td><td><p:inputText id="phoneNum" value="#{studentProfileController.theModel.phoneNumber}"><!--required="true -->
+                                        <f:validateLength maximum="15" /></p:inputText></td></tr>
+                            <tr><td>Street Address:</td><td><p:inputText id="streetAddress" value="#{studentProfileController.theModel.streetAddress}"><!--required="true -->
+                                    </p:inputText></td></tr>
+                            <tr><td>City:</td><td><p:inputText id="city"  value="#{studentProfileController.theModel.city}"><!--required="true -->
+                                    </p:inputText></td></tr>
+                            <tr><td>State/Province:</td><td><p:inputText id="state"  value="#{studentProfileController.theModel.state}"><!--required="true -->
+                                    </p:inputText></td></tr>
+                            <tr><td>Zip/Postal Code:</td><td><p:inputText id="postal"  value="#{studentProfileController.theModel.zipCode}"><!--required="true -->
+                                    </p:inputText></td></tr>
+                            <tr><td>Country:</td><td><p:inputText id="country"  value="#{studentProfileController.theModel.country}">
+                                    </p:inputText></td></tr>
+                        </table>
+                    </div>
+                    <div style="float:left; width:50%;">
+                        <table>
+                            <tr><td><h3>Education and Scores:</h3></td><td></td></tr>
+                            <tr><td>Name of High School:</td><td><p:inputText id="highschool"  value="#{studentProfileController.theModel.highSchoolName}"><!--required="true -->
+                                    </p:inputText></td></tr>
+                            <tr><td>GPA(4.0 Grading Scale):</td><td><p:inputText id="gpa"  value="#{studentProfileController.theModel.gpa}"><!--required="true -->
+                                    </p:inputText></td></tr>
+                            <tr><td>SAT Score:</td><td><p:inputText id="sat" value="#{studentProfileController.theModel.satScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>ACT Score:</td><td><p:inputText id="act"  value="#{studentProfileController.theModel.actScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>PSAT/NMSQT Score:</td><td><p:inputText id="psat" value="#{studentProfileController.theModel.psatScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>TOEFL Score:</td><td><p:inputText id="toefl" value="#{studentProfileController.theModel.toeflScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>Universities of Interest:</td><td><p:selectManyMenu id="UniversitiesID"
+                                                                                        value="#{studentProfileController.theModel.universitiesOfInterest}">
+                                        <f:selectItem id="itemIlstu" itemLabel="Illinois State University" itemValue="Illinois State University" />
+                                        <f:selectItem id="itemUOfI" itemLabel="University Of Illinois" itemValue="University Of Illinois" />
+                                        <f:selectItem id="itemUOfW" itemLabel="University of Wisconsin" itemValue="University of Wisconsin" />
+                                        <f:selectItem id="itemPurdue" itemLabel="Purdue University" itemValue="Purdue University" />
+                                    </p:selectManyMenu></td></tr>
+                            <tr><td>Majors of Interest:</td><td><p:selectManyMenu id="MajorsID"
+                                                                                  value="#{studentProfileController.theModel.majorsOfInterest}">
+                                        <f:selectItem id="itemEng" itemLabel="Engineering" itemValue="Engineering" />
+                                        <f:selectItem id="itemMath" itemLabel="Math" itemValue="Math" />
+                                        <f:selectItem id="itemIT" itemLabel="Information Technology" itemValue="Information Technology" />
+                                        <f:selectItem id="itemEducation" itemLabel="Education" itemValue="Education" />
+                                    </p:selectManyMenu></td></tr>
+                            <tr><td>Activities:</td><td><p:inputText id="activities"
+                                                                     value="#{studentProfileController.theModel.activities}">
+                                    </p:inputText></td></tr>
+                            <tr><td>More About Me:</td><td><p:inputTextarea id="moreAboutMe"
+                                                                            rows="10"    value="#{studentProfileController.theModel.aboutStudent}">
+                                    </p:inputTextarea></td></tr>
+                            <tr><td>Choose Image:</td><td><p:fileUpload value="#{studentProfileController.theModel.file}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" mode="simple"/></td></tr>
+                            <tr><td>Choose Document:</td><td><p:fileUpload value="#{studentProfileController.theModel.document}" allowTypes="/(\.|\/)(pdf)$/" mode="simple"/></td></tr>
+                            <tr><td> <p:commandButton id="submitID" value="Submit"  action="#{studentProfileController.createProfile()}"/>&nbsp;
+                                    <p:commandButton value="reset" type="reset" /> </td></tr>
+                        </table> 
+                    </div>
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

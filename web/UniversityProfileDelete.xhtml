@@ -1,0 +1,43 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>University Profile Delete</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/universityCommon.xhtml">
+            <ui:define name="content-right">
+                <h:form>
+
+                    <table>
+                        <tr>
+                            <td><h:outputText value="Username: " style="color: black"/></td>
+                            <td><p:inputText id="loginname" 
+                                             value="#{loginController.university.email}" disabled="true" />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td><h:outputText value="Password: " style="color: black" /></td>
+                            <td><p:password id="password" 
+                                            value="#{deleteController.myBean.password}" />
+                            </td>
+                        </tr>
+                        <tr></tr>
+                        <tr>
+                            <td> </td>
+                            <td><p:commandButton value="Delete Profile" 
+                                                 action="#{deleteController.deleteUniversityProfile(loginController.university.email)}"/>
+                            </td>
+                        </tr>
+                    </table> 
+                </h:form> 
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

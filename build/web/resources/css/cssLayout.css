@@ -1,0 +1,42 @@
+html{
+    margin: 0px;
+    padding:0px;   
+}
+
+#top {
+    position: relative;
+    background-color: #c2dfef;
+    color: black;
+    padding: 5px;
+    height: 75px;
+}
+
+#main {
+    position: relative;
+    background-color: ghostwhite;
+    color: black;
+    padding: 5px;
+    height: 500px;
+}
+
+#left {
+    float: left;
+    width: 180px;
+}
+
+#right {
+    float: right;
+    width: 1100px;
+
+}
+
+#bottom {
+    position: relative;
+    background-color: #c2dfef;
+    height: 50px;
+}
+
+
+
+
+

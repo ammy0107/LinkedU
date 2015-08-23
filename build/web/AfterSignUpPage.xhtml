@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:h="http://java.sun.com/jsf/html"
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui">
+    <h:body> 
+        <ui:composition template="templates/common.xhtml">
+            <ui:define name="content-right">				
+
+                <div style="float:left; width:30%;">
+                      <h:form> 
+                        <h:outputText id="result" escape="false" value="#{studentProfileController.response}"/><br/>
+                       
+                    </h:form>
+
+                </div>
+                <div style="float:left; width:70%; " id="cp_widget_552e12f7-bdac-45b8-a122-c46aeb20b112">
+                    <script type="text/javascript">
+                        var cpo = [];
+                        cpo["_object"] = "cp_widget_552e12f7-bdac-45b8-a122-c46aeb20b112";
+                        cpo["_fid"] = "AwEATLMNNJQh";
+                        var _cpmp = _cpmp || [];
+                        _cpmp.push(cpo);
+                        (function () {
+                            var cp = document.createElement("script");
+                            cp.type = "text/javascript";
+                            cp.async = true;
+                            cp.src = "//www.cincopa.com/media-platform/runtime/libasync.js";
+                            var c = document.getElementsByTagName("script")[0];
+                            c.parentNode.insertBefore(cp, c);
+                        })();</script>
+                </div>  		
+            </ui:define>
+        </ui:composition> 
+    </h:body> 
+</html>	

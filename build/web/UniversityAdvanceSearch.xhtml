@@ -1,0 +1,211 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>University Advanced Search</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/universityCommon.xhtml">
+            <ui:define name="content-right">
+                <b>  <center>   <h3><h:outputText value="Advanced Search" style="color: black"/> </h3></center> </b> 
+
+                <h:form>
+                    <table>
+                        <tr><td><b>  <h3><h:outputText value="Search Student" style="color: black"/> </h3></b></td><td></td></tr>
+                        <tr><td> <b> <p:outputLabel value="Based on Scores or Date Of Birth:"/></b></td></tr>
+
+                        <tr><td>Select search criterion:</td>
+                            <td><p:selectOneMenu id="searchCriterion" value="#{studentSearchController.scoreDateSearchCriterion}" >
+                                    <f:selectItem id="itemAll" itemLabel="All" itemValue="All" />
+                                    <f:selectItem id="itemGPA" itemLabel="GPA(4.0 Grading Scale)" itemValue="GPA"  />
+                                    <f:selectItem id="itemPSAT" itemLabel="PSAT/NMSQT Score" itemValue="PSAT_NMSQTScore" />
+                                    <f:selectItem id="itemSAT" itemLabel="SAT Score" itemValue="SATScore" />
+                                    <f:selectItem id="itemACT" itemLabel="ACT Score" itemValue="ACTScore" />
+                                    <f:selectItem id="itemTOEFL" itemLabel="TOEFL Score" itemValue="TOEFLScore" />
+                                    <f:selectItem id="itemDOB" itemLabel="Date of Birth(YYYY-MM-DD)" itemValue="DateOfBirth" />
+                                    <f:ajax event="change" render="max min"/>
+                                </p:selectOneMenu></td>
+                            <td><p:inputText id="min" disabled="#{studentSearchController.disabledScore}" value="#{studentSearchController.min}"/></td>
+                            <td>-</td>   <td><p:inputText id="max" disabled="#{studentSearchController.disabledScore}" value="#{studentSearchController.max}"/></td>
+                            <td> <h:commandButton value="Search" action="#{studentSearchController.retrieveStudByScoreDateCrit()}" id="submitID" >   
+                                    <f:actionListener binding="#{studentSearchController.enableTable2()}"/></h:commandButton></td></tr> 
+                    </table></h:form><br/> 
+                <h:form><table>
+                        <tr><td><b>Based on Other Criteria:</b> </td><td></td></tr>
+                        <tr><td>  Select search criterion:</td><td><p:selectOneMenu id="searchCriterion"  value="#{studentSearchController.otherSearchCriterion}">
+                                    <f:selectItem id="itemAll" itemLabel="All" itemValue="All" />
+                                    <f:selectItem id="itemFirstName" itemLabel="First Name" itemValue="FirstName"  />
+                                    <f:selectItem id="itemLastName" itemLabel="Last Name" itemValue="LastName" />
+                                    <f:selectItem id="itemEmail" itemLabel="Email" itemValue="Email" />
+                                    <f:selectItem id="itemGender" itemLabel="Gender" itemValue="Gender" />
+                                    <f:selectItem id="itStreetAddress" itemLabel="Street Address" itemValue="StreetAddress" />
+                                    <f:selectItem id="itemCity" itemLabel="City" itemValue="City" />
+                                    <f:selectItem id="itemState" itemLabel="State" itemValue="State" />
+                                    <f:selectItem id="itemZipCode" itemLabel="ZipCode" itemValue="ZipCode" />
+                                    <f:selectItem id="itemCountry" itemLabel="Country" itemValue="Country" />
+                                    <f:selectItem id="itemHighSchool" itemLabel="High School" itemValue="HighSchoolName" />
+                                    <f:selectItem id="itemUniversitiesOfInterest" itemLabel="Universities Of Interest" itemValue="UniversitiesOfInterest" />
+                                    <f:selectItem id="itemMajorsOfInterest" itemLabel="Majors Of Interest" itemValue="MajorsOfInterest" />
+                                    <f:selectItem id="itemActivities" itemLabel="Activities" itemValue="Activities" /> 
+                                    <f:ajax event="change" render="keyword"/>
+                                </p:selectOneMenu>   </td>
+                            <td>Enter Keyword:</td><td> <p:inputText id="keyword" disabled="#{studentSearchController.disabledOther}" value="#{studentSearchController.keyword}"/></td>
+                            <td>  <h:commandButton id="submit" value="Search" action="#{studentSearchController.retrieveStudByOtherCrit()}">
+                                    <f:actionListener binding="#{studentSearchController.enableTable2()}"/></h:commandButton></td></tr> 
+
+                    </table>
+                </h:form>
+
+
+                <div>
+
+                    <h:form class="table" rendered="#{studentSearchController.showTable2}">
+                        <h3><h:outputText value="Student Search Results" style="color: black"/> </h3>
+                        <p:dataTable id="studentTableID" value="#{studentSearchController.students}" var="bRow" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FirstName"/>
+                                </f:facet>
+                                <h:commandLink value="#{bRow.firstName}" action="#{studentSearchController.retriveProfile(bRow.email)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="LastName"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.lastName}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="GPA"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.gpa}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.email}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedGender}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.gender}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedPhone}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.phoneNumber}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedDOB}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.scoreDateSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.dateOfBirth}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedStreetAddress}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.streetAddress}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedCity}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.city}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedState}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.state}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedZip}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.zipCode}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedCountry}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.country}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedHighSchool}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.highSchoolName}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedUniv}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.convertUniversitiesOfInterestToString()}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedMaj}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.convertMajorsOfInterestToString()}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedActivities}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.activities}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedRateAct}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.ratingInActivity}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedAboutStud}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.otherSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.aboutStudent}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedPSAT}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.scoreDateSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.psatScore}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedSAT}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.scoreDateSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.satScore}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedACT}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.scoreDateSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.actScore}"/>
+                            </p:column>
+                            <p:column rendered="#{studentSearchController.renderedTOEFL}">
+                                <f:facet name="header">
+                                    <h:outputText value="#{studentSearchController.scoreDateSearchCriterion}"/>
+                                </f:facet>
+                                <h:outputText value="#{bRow.toeflScore}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+
+
+                </div>
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

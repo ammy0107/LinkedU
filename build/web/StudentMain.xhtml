@@ -1,0 +1,66 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Student Main</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/studentCommon.xhtml">
+            <ui:define name="content-right">
+           Hello! <h:outputText value="#{loginController.student.firstName}"/>,
+                <br/>
+                <h:form>
+                    <center>  <p:inputText  required="true" value="#{universitySearchController.keyword}"></p:inputText>
+                        &nbsp;   <h:commandButton id="submitID" value="Search" action="#{universitySearchController.retrieveUnivByAnyKeyword()}">
+                            <f:actionListener binding="#{universitySearchController.enableTable1()}"/>
+                        </h:commandButton><br/>
+                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;    &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  
+                        &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;   &nbsp;&nbsp; &nbsp;&nbsp; &nbsp;&nbsp;  &nbsp;&nbsp;        <p:link value="Advanced Search" outcome="StudentAdvanceSearch"></p:link> </center>
+                </h:form>
+                <div>
+                    <h:form class="table" rendered="#{universitySearchController.showTable1}">
+                        <h3>University Search Results </h3>
+                        <p:dataTable id="studentTableID" value="#{universitySearchController.universities}" var="aRow" >
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Name of the University"/>
+                                </f:facet>
+                                <h:commandLink value="#{aRow.name}" action="#{universitySearchController.retriveProfile(aRow.email)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="website"/>
+                                </f:facet>
+                                <h:outputText value="#{aRow.website}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="email"/>
+                                </f:facet>
+                                <h:outputText value="#{aRow.email}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Minimum Required GPA"/> 
+                                </f:facet>
+                                <h:outputText value="#{aRow.minimumRequiredGPA}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Number of times viewed"/> 
+                                </f:facet>
+                                <h:outputText value="#{aRow.count}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </div> 
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

@@ -1,0 +1,57 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Student Profile</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/studentCommon.xhtml">
+            <ui:define name="content-right">
+                <center><h2>Your Profile</h2></center>
+                <h:form>
+
+                    <div style="float: right">      
+                        <p:graphicImage id="image" alt="uploaded" value="#{loginController.student.fileToShow}" width="300px" height="300px">
+                        </p:graphicImage>
+                    </div>
+                    <div style="float: left"> <table><tr><td>
+                                    <h:outputText value="Full Name: " />
+                                </td><td>
+                                    <h:outputText value="#{loginController.student.firstName}" />&nbsp;
+                                    <h:outputText value="#{loginController.student.lastName}" />
+                                </td></tr>
+
+                            <tr><td>Gender:</td><td><h:outputText value="#{loginController.student.gender}"/></td></tr>
+                            <tr><td>DOB:</td><td><h:outputText value="#{loginController.student.dateOfBirth}"/></td></tr>
+                            <tr><td>Contact Information:</td><td></td></tr>
+                            <tr><td>Address:</td><td><h:outputText value="#{loginController.student.streetAddress}"/>, <h:outputText value="#{loginController.student.city}"/>
+                                    , <h:outputText value="#{loginController.student.state}"/>&nbsp;<h:outputText value="#{loginController.student.zipCode}"/>
+                                    &nbsp;<h:outputText value="#{loginController.student.country}"/></td></tr>
+                            <tr><td>Phone Number:</td><td><h:outputText value="#{loginController.student.phoneNumber}"/></td></tr>
+                            <tr><td>Email:</td><td><h:outputText value="#{loginController.student.email}"/></td></tr>
+                            <tr><td>Score(s):</td><td></td></tr>
+                            <tr><td>GPA:</td><td><h:outputText value="#{loginController.student.gpa}"/></td></tr>
+                            <tr><td>SAT:</td><td><h:outputText value="#{loginController.student.satScore}"/></td></tr>
+                            <tr><td>ACT:</td><td><h:outputText value="#{loginController.student.actScore}"/></td></tr>
+                            <tr><td>PSAT:</td><td><h:outputText value="#{loginController.student.psatScore}"/></td></tr>
+                            <tr><td>TOEFL:</td><td><h:outputText value="#{loginController.student.toeflScore}"/></td></tr>
+                            <tr><td>Universities of interest:</td><td><h:outputText value="#{loginController.student.convertUniversitiesOfInterestToString()}"/></td></tr>
+                            <tr><td> Majors of interest:</td><td><h:outputText value="#{loginController.student.convertMajorsOfInterestToString()}"/></td></tr>
+                            <tr><td>Activities:</td><td><h:outputText value="#{loginController.student.activities}"/></td></tr>
+                            <tr><td>  <p:commandLink value="Download" ajax="false">  
+                                        <p:fileDownload value="#{loginController.student.documentToShow}" />  
+                                    </p:commandLink>
+                                </td>
+                            </tr>
+                        </table>                   
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

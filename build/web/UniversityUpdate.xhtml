@@ -1,0 +1,102 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>University Update</title>
+        <h:outputStylesheet name="./css/cssLayout_1.css"/>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/universityUpdate.xhtml">
+            <ui:define name="content-right">
+                <center>    <h3>   <p:outputLabel value="University Profile Update" style="color: black"/></h3> </center>
+                <h:form enctype = "multipart/form-data">
+                    <div style="float:left; width:50%;">
+                        <table>
+                            <tr><td><h3>Profile Information:</h3></td><td></td></tr>
+                            <tr><td>User ID:</td><td><h:outputText value="#{loginController.university.email}">
+                                    </h:outputText></td></tr>
+                            <tr><td>Name of the University:</td><td><p:inputText id="uname" value="#{loginController.university.name}">
+                                        <f:validateLength minimum="2" maximum="25" />
+                                    </p:inputText></td></tr>
+
+                            <tr><td>Security Question:</td><td><p:selectOneMenu id="questionID" value="#{loginController.university.securityQuestion}" >
+                                        <f:selectItem id="Def" itemLabel="Please select a security question" itemValue="" />
+                                        <f:selectItem id="secQ1" itemLabel="What is the name of the city where you were born?" itemValue="What is the name of the city where you were born?" />
+                                        <f:selectItem id="secQ2" itemLabel="What is your first pet name?" itemValue="What is the name of the city where you were born?" />
+                                        <f:selectItem id="SecQ3" itemLabel="What is your best friends first name?" itemValue="What is the name of the city where you were born?" />
+                                    </p:selectOneMenu></td></tr>
+                            <tr><td>Security Answer:</td><td><p:inputText id="secAns"  value="#{loginController.university.securityAnswer}" >
+                                    </p:inputText></td></tr>
+                            <tr><td><h3>Contact Information:</h3></td><td></td></tr>
+                            <tr><td>Provider:</td><td><p:selectOneMenu id="providerID" value="#{loginController.university.provider}" >
+                                        <f:selectItem id="Prov" itemLabel="Please select a provider" itemValue="" />
+                                        <f:selectItem id="proQ1" itemLabel="boost mobile" itemValue="boost mobile" />
+                                        <f:selectItem id="proQ2" itemLabel="t-mobile" itemValue="t-mobile" />
+                                        <f:selectItem id="proQ3" itemLabel="cingular" itemValue="cingular" />
+                                        <f:selectItem id="proQ4" itemLabel="sprint nextel" itemValue="sprint nextel" />
+                                        <f:selectItem id="proQ5" itemLabel="verizon" itemValue="verizon" />
+                                        <f:selectItem id="proQ6" itemLabel="nextel" itemValue="nextel" />
+                                        <f:selectItem id="proQ7" itemLabel="us cellular" itemValue="us cellular" />
+                                        <f:selectItem id="proQ8" itemLabel="suncom" itemValue="suncom" />
+                                        <f:selectItem id="proQ9" itemLabel="powertel" itemValue="powertel" />
+                                        <f:selectItem id="proQ10" itemLabel="att cingular" itemValue="att cingular" />
+                                        <f:selectItem id="proQ11" itemLabel="alltel" itemValue="alltel" />
+                                        <f:selectItem id="proQ12" itemLabel="metro pcs" itemValue="metro pcs" />
+                                    </p:selectOneMenu></td></tr>
+                            <tr><td>Phone Number:</td><td><p:inputText id="phoneNum"  value="#{loginController.university.phoneNumber}">
+                                        <f:validateLength minimum="10" maximum="15" />
+                                    </p:inputText></td></tr>
+                            <tr><td>Street Address:</td><td><p:inputText id="streetAddress"  value="#{loginController.university.streetAddress}">
+                                    </p:inputText></td></tr>
+                            <tr><td>City:</td><td><p:inputText id="city"  value="#{loginController.university.city}">
+                                    </p:inputText></td></tr>
+                            <tr><td>State/Province:</td><td><p:inputText id="state"  value="#{loginController.university.state}">
+                                    </p:inputText></td></tr>
+                            <tr><td>Zip/Postal Code:</td><td><p:inputText id="zip"  value="#{loginController.university.zipCode}">
+                                    </p:inputText></td></tr>
+                            <tr><td>Country:</td><td><p:inputText id="country"  value="#{loginController.university.country}">
+                                    </p:inputText></td></tr>
+
+                        </table></div>
+                    <div style="float:left; width:50%;">
+                        <table>   
+                            <tr><td> <h3>Minimum Required Scores:</h3></td><td></td></tr>
+                            <tr><td>GPA(4.0 Grading Scale):</td><td><p:inputText id="gpa"  value="#{loginController.university.minimumRequiredGPA}">
+                                    </p:inputText></td></tr>
+                            <tr><td>SAT Score:</td><td><p:inputText id="sat" value="#{loginController.university.minimumRequiredSATScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>ACT Score:</td><td><p:inputText id="act"  value="#{loginController.university.minimumRequiredACTScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>PSAT/NMSQT Score:</td><td><p:inputText id="psat" value="#{loginController.university.minimumRequiredPSATScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>TOEFL Score:</td><td><p:inputText id="toefl" value="#{loginController.university.minimumRequiredTOEFLScore}">
+                                    </p:inputText></td></tr>
+                            <tr><td>Offered Majors:<br/><br/> Previously offered Majors:<br/><h:outputText value="#{loginController.university.convertOfferedMajorsToString()}">
+                                    </h:outputText></td>
+                                <td><p:selectManyMenu id="offeredMajorsID"
+                                                      value="#{loginController.university.offeredMajors}">
+                                        <f:selectItem id="itemEng" itemLabel="Engineering" itemValue="Engineering" />
+                                        <f:selectItem id="itemMath" itemLabel="Math" itemValue="Math" />
+                                        <f:selectItem id="itemIT" itemLabel="Information Technology" itemValue="Information Technology" />
+                                        <f:selectItem id="itemEducation" itemLabel="Education" itemValue="Education" />
+                                    </p:selectManyMenu></td></tr>
+                            <tr><td>More About University:</td><td><p:inputTextarea id="moreAboutUniversity" rows="10"
+                                                                                    value="#{loginController.university.aboutUniversity}">
+                                    </p:inputTextarea></td></tr>
+                            <tr><td>Choose Image:</td><td><p:fileUpload value="#{loginController.university.image}" allowTypes="/(\.|\/)(gif|jpe?g|png)$/" mode="simple"/></td></tr>
+                            <tr><td> <h:commandButton id="submitID" value="Update" action="#{loginController.updateThisUniv()}"> &nbsp;
+                                        <f:ajax execute="@form" render="status" />
+                                    </h:commandButton>                        
+                                    <h:outputText id="status" value="#{loginController.updateStatus}" />  </td></tr>
+                        </table>
+                    </div>
+                </h:form>
+            </ui:define>
+        </ui:composition>
+    </h:body>
+</html>
+

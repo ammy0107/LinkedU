@@ -1,0 +1,80 @@
+<?xml version='1.0' encoding='UTF-8' ?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"
+      xmlns:h="http://xmlns.jcp.org/jsf/html"
+      xmlns:ui="http://xmlns.jcp.org/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:f="http://xmlns.jcp.org/jsf/core">
+    <h:head>
+        <title>Compare Student Posting</title>
+    </h:head>
+    <h:body>
+        <ui:composition template="templates/universityCommon.xhtml">
+            <ui:define name="content-right">
+                <h:form> <center><h3>Compare Students</h3></center>
+                    <table>
+                        <tr><td>   <p:selectOneMenu id="univ1" value="#{studentSearchController.keyword}">
+                                    <f:selectItem itemValue=" " itemLabel="Select 1st Student"  />
+                                    <f:selectItems  value="#{studentSearchController.retrieveStudentName()}"/>
+
+                                </p:selectOneMenu></td>
+                            <td>         <p:selectOneMenu id="univ2" value="#{studentSearchController.keyword1}">
+                                    <f:selectItem itemValue=" " itemLabel="Select 2nd Student"  />
+                                    <f:selectItems  value="#{studentSearchController.retrieveStudentName()}"/>
+
+                                </p:selectOneMenu></td>
+
+                            <td>           <p:selectOneMenu id="univ3" value="#{studentSearchController.keyword2}">
+                                    <f:selectItem itemValue=" " itemLabel="Select 3rd Student"  />
+                                    <f:selectItems  value="#{studentSearchController.retrieveStudentName()}"/>
+
+                                </p:selectOneMenu></td>
+                        </tr>
+                        <tr><td>      <h:commandButton id="submitID" value="Submit" style="width: 100px; height:30px; font-weight: bold" action="#{studentSearchController.studentCompareTable()}">
+                                    <f:actionListener binding="#{studentSearchController.enableTable1()}"/></h:commandButton>
+                            </td></tr>     </table> </h:form>
+
+                <div>
+                    <h:form class="table" rendered="#{studentSearchController.showTable1}" >
+                        <h3><h:outputText value="Student Search Results" style="color: black"/> </h3>
+                        <p:dataTable id="compareStudent" value="#{studentSearchController.merge}" var="aRow" >
+
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="FirstName"/>
+                                </f:facet>
+                                <h:commandLink value="#{aRow.firstName}" action="#{studentSearchController.retriveProfile(aRow.email)}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="LastName"/>
+                                </f:facet>
+                                <h:outputText value="#{aRow.lastName}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="GPA"/>
+                                </f:facet>
+                                <h:outputText value="#{aRow.gpa}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Email"/>
+                                </f:facet>
+                                <h:outputText value="#{aRow.email}"/>
+                            </p:column>
+                            <p:column>
+                                <f:facet name="header">
+                                    <h:outputText value="Number of times viewed"/> 
+                                </f:facet>
+                                <h:outputText value="#{aRow.count}"/>
+                            </p:column>
+                        </p:dataTable>
+                    </h:form>
+                </div> 
+            </ui:define>
+
+        </ui:composition>
+    </h:body>
+</html>
+

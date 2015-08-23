@@ -1,0 +1,54 @@
+<?xml version='1.0' encoding='UTF-8'?><!-- Published by JAX-WS RI at http://jax-ws.dev.java.net. RI's version is Metro/2.1.1-b09 (branches/2.1-6834; 2011-07-16T17:14:48+0000) JAXWS-RI/2.2.5-promoted-b04 JAXWS/2.2. --><xs:schema xmlns:tns="http://ISU/" xmlns:xs="http://www.w3.org/2001/XMLSchema" version="1.0" targetNamespace="http://ISU/">
+
+<xs:element name="getCarriers" type="tns:getCarriers"/>
+
+<xs:element name="getCarriersResponse" type="tns:getCarriersResponse"/>
+
+<xs:element name="sendSMS" type="tns:sendSMS"/>
+
+<xs:element name="sendSMSISU" type="tns:sendSMSISU"/>
+
+<xs:element name="sendSMSISUResponse" type="tns:sendSMSISUResponse"/>
+
+<xs:element name="sendSMSResponse" type="tns:sendSMSResponse"/>
+
+<xs:complexType name="sendSMSISU">
+<xs:sequence>
+<xs:element name="username" type="xs:string" minOccurs="0"/>
+<xs:element name="password" type="xs:string" minOccurs="0"/>
+<xs:element name="provider" type="xs:string" minOccurs="0"/>
+<xs:element name="number" type="xs:string" minOccurs="0"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendSMSISUResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendSMS">
+<xs:sequence>
+<xs:element name="provider" type="xs:string" minOccurs="0"/>
+<xs:element name="number" type="xs:string" minOccurs="0"/>
+<xs:element name="message" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="sendSMSResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" minOccurs="0"/>
+</xs:sequence>
+</xs:complexType>
+
+<xs:complexType name="getCarriers">
+<xs:sequence/>
+</xs:complexType>
+
+<xs:complexType name="getCarriersResponse">
+<xs:sequence>
+<xs:element name="return" type="xs:string" nillable="true" minOccurs="0" maxOccurs="unbounded"/>
+</xs:sequence>
+</xs:complexType>
+</xs:schema>

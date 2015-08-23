@@ -1,0 +1,25 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE html PUBLIC "-//W3C//DTD XHTML 1.0 Transitional//EN" 
+    "http://www.w3.org/TR/xhtml1/DTD/xhtml1-transitional.dtd">
+<html xmlns="http://www.w3.org/1999/xhtml"   
+      xmlns:ui="http://java.sun.com/jsf/facelets"
+      xmlns:p="http://primefaces.org/ui"
+      xmlns:h="http://xmlns.jcp.org/jsf/html">
+    <body>
+        <ui:composition> 
+            <h:form>
+                <p:tieredMenu style="width:200px">
+                    <p:menuitem value="Home" outcome="StudentMain.xhtml"  />
+                    <p:submenu label="Profile">
+                        <p:menuitem value="View Profile" outcome="#{loginController.retrieveStudProfile(loginController.student.email)}"  />
+                        <p:menuitem value="Update Profile" outcome="#{updateController.retrieveStudProfile(loginController.student.email)}" />
+                        <p:menuitem value="Delete Profile" outcome="StudentProfileDelete.xhtml"  />
+                    </p:submenu>
+                    <p:menuitem value="Compare University Posting" outcome="CompareUniversityPosting.xhtml" />
+                    <p:menuitem value="Change Password" outcome="StudentChangePassword.xhtml" />
+                    <p:menuitem value="Log Out" action="#{loginController.logout()}" />
+                </p:tieredMenu>
+            </h:form>
+        </ui:composition>	
+    </body>
+</html>
